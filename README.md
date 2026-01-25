@@ -107,3 +107,13 @@ The API will be available at `http://127.0.0.1:8000`.
 
 Contributions are welcome! Please fork the repository and submit a pull request with your changes.
 
+<div align="right">
+
+**Vertex-Valet**
+
+****Het Katrodiya****  
+****Gaurang Jadav****
+
+</div>
+
+
