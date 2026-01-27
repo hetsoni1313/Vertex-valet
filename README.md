@@ -60,11 +60,56 @@ Vertex-valet/
    - Open `storage/db.ipynb` File.
    - Execute the all cells to create the SQLite database (`library.db`) and populate it with data.
 
-### Data Processing
+## Workflow
 
-1. **Ingestion**: Run `ingestion/ingestion.ipynb` to load raw data from `data/raw/RC_books.csv`.
-2. **Transformation**: Run `transformation/transformation.ipynb` to clean and process the data, outputting to `data/processed/cleaned_RC_Book.csv`.
-3. **Storage**: As above, use `storage/db.ipynb` to load the processed data into the database.
+The project follows a sequential data processing workflow:
+
+### 1. Data Ingestion
+- **File**: `ingestion/ingestion.ipynb`
+- **Purpose**: Load raw book data from CSV files.
+- **Input**: `data/raw/RC_books.csv`
+- **Process**:
+  - Read the raw CSV file using pandas.
+  - Handle encoding issues (e.g., latin-1).
+  - Perform initial data exploration and cleaning if needed.
+- **Output**: Raw data loaded into memory for further processing.
+
+### 2. Data Transformation
+- **File**: `transformation/transformation.ipynb`
+- **Purpose**: Clean, process, and enrich the ingested data.
+- **Input**: Processed data from ingestion or `data/processed/cleaned_RC_Book.csv`
+- **Process**:
+  - Load the cleaned data.
+  - Perform data transformations (e.g., adding descriptions, normalizing fields).
+  - Handle missing values, duplicates, and data quality issues.
+  - Apply business logic for data enrichment.
+- **Output**: `data/processed/cleaned_RC_Book.csv` - the final processed dataset.
+
+### 3. Data Storage
+- **File**: `storage/db.ipynb`
+- **Purpose**: Store the processed data in a database for efficient querying.
+- **Input**: `data/processed/cleaned_RC_Book.csv`
+- **Process**:
+  - Create a SQLite database schema.
+  - Load the processed CSV data into the database.
+  - Create indexes for performance.
+  - Ensure data integrity and relationships.
+- **Output**: `storage/library.db` - SQLite database with book data.
+
+### 4. API Serving
+- **File**: `API/main.py`
+- **Purpose**: Provide REST API endpoints to query the book data.
+- **Input**: `storage/library.db`
+- **Process**:
+  - Implement FastAPI application.
+  - Connect to the SQLite database.
+  - Define endpoints for health check, book lookup by ISBN, and search functionality.
+- **Endpoints**:
+  - `GET /`: Health check
+  - `GET /books/{isbn}`: Get book details by ISBN
+  - `GET /search?q={query}`: Search books by title or author
+- **Output**: REST API responses in JSON format.
+
 
 ## Technologies Used
   Python 3.8+
