@@ -3,6 +3,16 @@ import sqlite3
 
 app = FastAPI(title="Books API")
 
+from fastapi.middleware.cors import CORSMiddleware
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all methods
+    allow_headers=["*"],  # Allows all headers
+)
+
 DB_PATH = "storage/library.db"
 
 def get_db_connection():
@@ -51,3 +61,32 @@ def search_books(q: str):
     conn.close()
 
     return [dict(r) for r in results]
+
+## Recommendation System
+
+import sys
+from pathlib import Path
+ROOT = Path(__file__).resolve().parent.parent
+sys.path.append(str(ROOT))
+from recommender.recommender import BookRecommender
+
+recommender_engine = BookRecommender()
+
+@app.on_event("startup")
+def load_recommender():
+    """Load recommender model on startup to reduce latency for first request."""
+    # We wrap in try-except in case embeddings aren't built yet
+    try:
+        recommender_engine.load()
+        print("Recommender model loaded successfully.")
+    except Exception as e:
+        print(f"Warning: Could not load recommender model: {e}")
+
+@app.get("/recommend")
+def recommend_books(query: str):
+    """Get book recommendations based on semantic search."""
+    try:
+        results = recommender_engine.recommend(query)
+        return results
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Recommendation failed: {str(e)}")

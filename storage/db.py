@@ -65,7 +65,9 @@ def create_table(conn: sqlite3.Connection) -> None:
         source TEXT,
         year INTEGER,
         acc_date TEXT,
-        place_publisher TEXT
+        place_publisher TEXT,
+        poster_url TEXT,
+        book_url TEXT
     );
     """)
 
@@ -92,8 +94,10 @@ def _normalize_row(row: pd.Series) -> tuple:
 
     acc_date = row.get("Acc_Date")
     place = row.get("Place_Publisher") if "Place_Publisher" in row.index else row.get("Place_Publisher")
+    poster_url = row.get("poster_url")
+    book_url = row.get("book_url")
 
-    return (isbn, title, author, description, source, year, acc_date, place)
+    return (isbn, title, author, description, source, year, acc_date, place, poster_url, book_url)
 
 
 def insert_data(conn: sqlite3.Connection, df: pd.DataFrame) -> None:
@@ -105,8 +109,8 @@ def insert_data(conn: sqlite3.Connection, df: pd.DataFrame) -> None:
 
     insert_sql = f"""
     INSERT OR IGNORE INTO {TABLE_NAME}
-    (isbn, title, author, description, source, year, acc_date, place_publisher)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    (isbn, title, author, description, source, year, acc_date, place_publisher, poster_url, book_url)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     """
 
     tuples = [_normalize_row(row) for _, row in df.iterrows()]
