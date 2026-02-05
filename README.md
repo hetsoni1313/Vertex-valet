@@ -131,11 +131,26 @@ The Docker image automatically handles database initialization and model downloa
 
 | Name | GitHub |
 | :--- | :--- |
-| **Het Katrodiya** | [@hetsoni1313](https://github.com/hetsoni1313) |
 | **Gaurang Jadav** | [@gaurangjadav](https://github.com/GaUrAnGjJ) |
+| **Het Katrodiya** | [@hetsoni1313](https://github.com/hetsoni1313) |
+
 
 </div>
 
 ---
+
+## Application Screenshots
+
+![Search Query](screenshots/search_query.png)
+*(Semantic search for "data scrapping")*
+
+![Search Results](screenshots/search_results.png)
+*(Rich results with book covers and descriptions)*
+
+---
+
+## License
+
+This project is licensed under the MIT License.
 
 
