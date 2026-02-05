@@ -35,5 +35,9 @@ RUN if [ ! -f recommender/embeddings.pkl ]; then echo "Building embeddings..."; 
 # Expose port 8000 for the API
 EXPOSE 8000
 
-# Command to run the application using the PORT environment variable
-CMD ["/bin/sh", "-c", "uvicorn API.main:app --host 0.0.0.0 --port ${PORT:-8000}"]
+# Copy and prepare startup script
+COPY start.sh .
+RUN chmod +x start.sh
+
+# Command to run the application
+CMD ["./start.sh"]
