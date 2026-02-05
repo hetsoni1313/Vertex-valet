@@ -132,7 +132,7 @@ The Docker image automatically handles database initialization and model downloa
 | Name | GitHub |
 | :--- | :--- |
 | **Het Katrodiya** | [@hetsoni1313](https://github.com/hetsoni1313) |
-| **Gaurang Jadav** | [@gaurangjadav](https://github.com/) |
+| **Gaurang Jadav** | [@gaurangjadav](https://github.com/GaUrAnGjJ) |
 
 </div>
 
