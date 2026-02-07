@@ -1,5 +1,7 @@
 # Vertex-Valet
 
+**Live Demo:** [Vertex Valet - Intelligent Book Search](https://vertex-valet-production.up.railway.app/)
+
 Vertex Valet is an intelligent book recommendation and search system designed to help users discover books using natural language. Unlike traditional search engines that rely on keyword matching, Vertex Valet utilizes semantic search to understand the *meaning* and *context* of your query.
 
 Whether you're looking for a "sad story about a robot" or "a history of space exploration," Vertex Valet finds the most relevant books from a curated dataset of over 28,000 titles.
