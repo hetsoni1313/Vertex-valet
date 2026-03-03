@@ -16,7 +16,7 @@ Whether you're looking for a "sad story about a robot" or "a history of space ex
 *   **High-Performance API**: Built with **FastAPI** for asynchronous, low-latency responses.
 *   **Modern Frontend**: A clean, responsive web interface featuring dynamic book cards, cover images, and interactive descriptions.
 *   **End-to-End ETL Pipeline**: A complete data engineering workflow including ingestion, cleaning, transformation, and storage.
-*   **Dockerized Deployment**: Fully containerized for easy deployment on platforms like Railway or Render.
+*   **Dockerized Deployment**: Fully containerized for easy deployment on platforms like Railway.
 
 ---
 
